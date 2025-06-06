@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Tu tienda de computadoras</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1><i class="fas fa-laptop"></i> TechStore</h1>
+                </div>
+                
+                <div class="search-bar">
+                    <select class="category-select">
+                        <option>Todas las categorías</option>
+                        <option>Laptops</option>
+                        <option>Desktops</option>
+                        <option>Componentes</option>
+                        <option>Accesorios</option>
+                    </select>
+                    <input type="text" placeholder="Buscar computadoras, laptops, componentes...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="account">
+                        <i class="fas fa-user"></i>
+                        <span>Mi cuenta</span>
+                    </div>
+                    <div class="cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                        <span>Carrito</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#"><i class="fas fa-bars"></i> Todas las categorías</a></li>
+                    <li><a href="#">Laptops Gaming</a></li>
+                    <li><a href="#">Laptops Oficina</a></li>
+                    <li><a href="#">PC Gaming</a></li>
+                    <li><a href="#">Componentes</a></li>
+                    <li><a href="#">Monitores</a></li>
+                    <li><a href="#">Accesorios</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="banner-content">
+            <h2>Las mejores computadoras al mejor precio</h2>
+            <p>Encuentra laptops gaming, PCs de oficina y componentes de última generación</p>
+            <button class="cta-button">Ver ofertas</button>
+        </div>
+        <div class="banner-image">
+            <img src="img/setupin.png" alt="Gaming Setup">
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="featured-categories">
+        <div class="container">
+            <h2>Categorías destacadas</h2>
+            <div class="categories-grid">
+                <div class="category-card" data-category="gaming">
+                    <img src="img/gaminglaptops.webp" alt="Gaming Laptops">
+                    <h3>Laptops Gaming</h3>
+                    <p>Desde $899</p>
+                </div>
+                <div class="category-card" data-category="office">
+                    <img src="img/officelaptop.webp" alt="Office Laptops">
+                    <h3>Laptops Oficina</h3>
+                    <p>Desde $499</p>
+                </div>
+                <div class="category-card" data-category="desktop">
+                    <img src="img/desktop.webp" alt="Desktop PCs">
+                    <h3>PCs de Escritorio</h3>
+                    <p>Desde $699</p>
+                </div>
+                <div class="category-card" data-category="components">
+                    <img src="img/components.webp" alt="Components">
+                    <h3>Componentes</h3>
+                    <p>Desde $99</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <h2>Productos destacados</h2>
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Suscríbete a nuestro newsletter</h2>
+            <p>Recibe las mejores ofertas y novedades en tecnología</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Tu email">
+                <button>Suscribirse</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Acerca de TechStore</h3>
+                    <ul>
+                        <li><a href="#">Quiénes somos</a></li>
+                        <li><a href="#">Trabaja con nosotros</a></li>
+                        <li><a href="#">Prensa</a></li>
+                        <li><a href="#">Inversionistas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Servicio al cliente</h3>
+                    <ul>
+                        <li><a href="#">Centro de ayuda</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                        <li><a href="#">Garantías</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Métodos de pago</h3>
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-cc-amex"></i>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TechStore. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
