@@ -18,7 +18,7 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 - Opciones de login social
 - Diseño moderno y accesible
 
-### 3. Página de Catálogo (`catalogo.html`) - **NUEVA**
+### 3. Página de Catálogo (`catalogo.html`)
 - Catálogo completo de productos
 - Sistema de filtros avanzado:
   - Filtro por rango de precio
@@ -31,6 +31,43 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 - Paginación
 - Funcionalidad de carrito
 - Diseño responsivo
+
+### 4. Página del Carrito (`carrito.html`) - **NUEVA**
+- Gestión completa del carrito de compras
+- Lista de productos con controles de cantidad
+- Resumen de orden con cálculos automáticos
+- Sistema de cupones de descuento
+- Opciones de envío (Estándar, Express, Nocturno)
+- Proceso de checkout simulado
+- Persistencia de datos en localStorage
+- Diseño responsivo y moderno
+
+## Características del Carrito
+
+### Gestión de Productos
+- **Agregar/Remover productos** desde el catálogo
+- **Control de cantidades** con botones +/- 
+- **Cálculo automático** de subtotales y totales
+- **Persistencia local** de los datos del carrito
+- **Sincronización** entre todas las páginas
+
+### Sistema de Cupones
+- **WELCOME10**: 10% de descuento (mínimo $50)
+- **SAVE20**: 20% de descuento (mínimo $100)
+- **FREESHIP**: $15 de descuento fijo (mínimo $75)
+- **TECH25**: 25% de descuento (mínimo $200)
+
+### Opciones de Envío
+- **Envío Estándar**: Gratis (5-7 días hábiles)
+- **Envío Express**: $15 (2-3 días hábiles)
+- **Envío Nocturno**: $25 (1 día hábil)
+
+### Funcionalidades Avanzadas
+- **Cálculo automático** de descuentos y totales
+- **Validación de cupones** en tiempo real
+- **Mensajes de feedback** para todas las acciones
+- **Confirmación** antes de vaciar el carrito
+- **Simulación de checkout** con limpieza automática
 
 ## Características del Catálogo
 
@@ -60,6 +97,7 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 - `index.html` - Página principal
 - `login.html` - Página de inicio de sesión
 - `catalogo.html` - Página de catálogo de productos
+- `carrito.html` - Página del carrito de compras
 
 ### CSS
 - `styles.css` - Estilos principales del proyecto
@@ -68,6 +106,7 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 - `script.js` - Funcionalidad de la página principal
 - `login.js` - Funcionalidad de login
 - `catalogo.js` - Funcionalidad del catálogo
+- `carrito.js` - Funcionalidad del carrito
 
 ### Imágenes
 - `img/` - Carpeta con imágenes de productos y assets
@@ -78,6 +117,7 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 - JavaScript ES6+
 - Font Awesome (iconos)
 - Google Fonts (Inter)
+- localStorage (persistencia de datos)
 
 ## Características de Diseño
 - Gradientes modernos
@@ -89,24 +129,40 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 
 ## Funcionalidades del Carrito
 - Persistencia en localStorage
-- Contador de productos
+- Contador de productos sincronizado
 - Animaciones de feedback
 - Notificaciones de estado
+- Cálculos automáticos
+- Sistema de cupones
+- Opciones de envío
+- Proceso de checkout
 
 ## Instalación y Uso
 1. Clona o descarga el proyecto
 2. Abre `index.html` en tu navegador
 3. Navega entre las páginas usando el menú
 4. Explora el catálogo con todos sus filtros
-5. Prueba la funcionalidad del carrito
+5. Agrega productos al carrito
+6. Prueba la funcionalidad completa del carrito
 
 ## Navegación
 - **Inicio**: Página principal con productos destacados
 - **Catálogo**: Catálogo completo con filtros avanzados
+- **Carrito**: Gestión completa del carrito de compras
 - **Login**: Página de autenticación
+
+## Flujo de Compra
+1. **Explorar**: Navegar por el catálogo con filtros
+2. **Agregar**: Añadir productos al carrito
+3. **Revisar**: Ver productos en el carrito
+4. **Aplicar**: Usar cupones de descuento
+5. **Enviar**: Seleccionar opción de envío
+6. **Pagar**: Proceder al checkout
 
 ## Notas de Desarrollo
 - El proyecto está optimizado para navegadores modernos
 - Utiliza CSS Grid y Flexbox para layouts
 - JavaScript modular y bien estructurado
-- Código comentado para fácil mantenimiento 
+- Código comentado para fácil mantenimiento
+- Persistencia de datos en localStorage
+- Sincronización entre páginas 
