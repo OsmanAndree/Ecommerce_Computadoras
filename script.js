@@ -7,6 +7,9 @@ const products = [
     rating: 4.5,
     reviews: 234,
     image: "img/rogstrix.webp",
+    category: "gaming",
+    brand: "asus",
+    description: "Laptop gaming con RTX 4060, AMD Ryzen 7, 16GB RAM, 512GB SSD"
   },
   {
     id: 2,
@@ -15,6 +18,9 @@ const products = [
     rating: 4.8,
     reviews: 156,
     image: "img/macbookpro.webp",
+    category: "office",
+    brand: "apple",
+    description: "MacBook Pro con chip M3 Pro, 18GB RAM unificada, 512GB SSD"
   },
   {
     id: 3,
@@ -23,6 +29,9 @@ const products = [
     rating: 4.6,
     reviews: 89,
     image: "img/pccustom.webp",
+    category: "desktop",
+    brand: "custom",
+    description: "PC gaming personalizada con RTX 4070, Intel i7, 32GB RAM, 1TB NVMe"
   },
   {
     id: 4,
@@ -31,6 +40,9 @@ const products = [
     rating: 4.4,
     reviews: 312,
     image: "img/dellxps.webp",
+    category: "office",
+    brand: "dell",
+    description: "Laptop ultrabook con Intel i7, 16GB RAM, 512GB SSD, pantalla 4K"
   },
   {
     id: 5,
@@ -39,6 +51,9 @@ const products = [
     rating: 4.7,
     reviews: 198,
     image: "img/imac.webp",
+    category: "desktop",
+    brand: "apple",
+    description: "iMac todo en uno con chip M3, 8GB RAM unificada, 256GB SSD"
   },
   {
     id: 6,
@@ -47,6 +62,9 @@ const products = [
     rating: 4.2,
     reviews: 267,
     image: "img/pavilongaming.webp",
+    category: "gaming",
+    brand: "hp",
+    description: "Laptop gaming con GTX 1650, AMD Ryzen 5, 8GB RAM, 256GB SSD"
   },
   {
     id: 7,
@@ -55,6 +73,9 @@ const products = [
     rating: 4.9,
     reviews: 45,
     image: "img/workstation.webp",
+    category: "desktop",
+    brand: "custom",
+    description: "Workstation profesional con Intel i9, RTX A4000, 64GB RAM, 2TB NVMe"
   },
   {
     id: 8,
@@ -63,16 +84,14 @@ const products = [
     rating: 4.6,
     reviews: 178,
     image: "img/lenovothinkpad.webp",
+    category: "office",
+    brand: "lenovo",
+    description: "ThinkPad empresarial con Intel i7, 16GB RAM, 512GB SSD, seguridad avanzada"
   },
 ]
 
-// Cart functionality
-let cart = []
-let cartCount = 0
-
 // DOM elements
 const productsGrid = document.getElementById("products-grid")
-const cartCountElement = document.querySelector(".cart-count")
 
 // Initialize the page
 document.addEventListener("DOMContentLoaded", () => {
@@ -108,7 +127,7 @@ function createProductCard(product) {
                 <span class="rating-count">(${product.reviews})</span>
             </div>
             <div class="product-price">$${product.price.toFixed(2)}</div>
-            <button class="add-to-cart" onclick="addToCart(${product.id})">
+            <button class="add-to-cart" onclick="addToCartFromIndex(${product.id})">
                 <i class="fas fa-cart-plus"></i> Agregar al carrito
             </button>
         </div>
@@ -139,64 +158,12 @@ function generateStars(rating) {
   return stars
 }
 
-// Add product to cart
-function addToCart(productId) {
+// Add product to cart using shared utilities
+function addToCartFromIndex(productId) {
   const product = products.find((p) => p.id === productId)
-  if (product) {
-    cart.push(product)
-    cartCount++
-    updateCartCount()
-    showAddToCartAnimation()
-
-    // Show success message
-    showNotification(`${product.title} agregado al carrito`)
+  if (product && window.CartUtils) {
+    window.CartUtils.addToCart(product)
   }
-}
-
-// Update cart count display
-function updateCartCount() {
-  cartCountElement.textContent = cartCount
-  cartCountElement.style.animation = "none"
-  setTimeout(() => {
-    cartCountElement.style.animation = "pulse 0.5s ease-in-out"
-  }, 10)
-}
-
-// Show add to cart animation
-function showAddToCartAnimation() {
-  const cartIcon = document.querySelector(".cart")
-  cartIcon.style.animation = "none"
-  setTimeout(() => {
-    cartIcon.style.animation = "bounce 0.6s ease-in-out"
-  }, 10)
-}
-
-// Show notification
-function showNotification(message) {
-  const notification = document.createElement("div")
-  notification.className = "notification"
-  notification.textContent = message
-  notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #4CAF50;
-        color: white;
-        padding: 15px 20px;
-        border-radius: 5px;
-        z-index: 10000;
-        animation: slideInRight 0.3s ease-out;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    `
-
-  document.body.appendChild(notification)
-
-  setTimeout(() => {
-    notification.style.animation = "slideOutRight 0.3s ease-in"
-    setTimeout(() => {
-      document.body.removeChild(notification)
-    }, 300)
-  }, 3000)
 }
 
 // Setup event listeners
@@ -227,7 +194,9 @@ function setupEventListeners() {
     e.preventDefault()
     const email = this.querySelector("input").value
     if (email) {
-      showNotification("¡Suscripción exitosa! Gracias por unirte.")
+      if (window.CartUtils) {
+        window.CartUtils.showNotification("¡Suscripción exitosa! Gracias por unirte.")
+      }
       this.querySelector("input").value = ""
     }
   })
@@ -240,53 +209,29 @@ function setupEventListeners() {
       if (target) {
         target.scrollIntoView({
           behavior: "smooth",
+          block: "start",
         })
       }
     })
   })
 }
 
-// Search functionality
+// Perform search
 function performSearch() {
   const searchTerm = document.querySelector(".search-bar input").value.toLowerCase()
-  const filteredProducts = products.filter((product) => product.title.toLowerCase().includes(searchTerm))
-
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(searchTerm) ||
+    product.description.toLowerCase().includes(searchTerm)
+  )
   displayFilteredProducts(filteredProducts)
-
-  if (filteredProducts.length === 0) {
-    showNotification("No se encontraron productos para tu búsqueda")
-  }
 }
 
 // Filter by category
 function filterByCategory(category) {
   let filteredProducts = products
 
-  switch (category) {
-    case "gaming":
-      filteredProducts = products.filter(
-        (p) =>
-          p.title.toLowerCase().includes("gaming") ||
-          p.title.toLowerCase().includes("rog") ||
-          p.title.toLowerCase().includes("rtx"),
-      )
-      break
-    case "office":
-      filteredProducts = products.filter(
-        (p) =>
-          p.title.toLowerCase().includes("dell") ||
-          p.title.toLowerCase().includes("thinkpad") ||
-          p.title.toLowerCase().includes("xps"),
-      )
-      break
-    case "desktop":
-      filteredProducts = products.filter(
-        (p) =>
-          p.title.toLowerCase().includes("pc") ||
-          p.title.toLowerCase().includes("imac") ||
-          p.title.toLowerCase().includes("workstation"),
-      )
-      break
+  if (category && category !== "all") {
+    filteredProducts = products.filter((product) => product.category === category)
   }
 
   displayFilteredProducts(filteredProducts)
@@ -366,31 +311,6 @@ const additionalStyles = `
 const styleSheet = document.createElement("style")
 styleSheet.textContent = additionalStyles
 document.head.appendChild(styleSheet)
-
-// Initialize cart from localStorage if available
-function initializeCart() {
-  const savedCart = localStorage.getItem("techstore-cart")
-  if (savedCart) {
-    cart = JSON.parse(savedCart)
-    cartCount = cart.length
-    updateCartCount()
-  }
-}
-
-// Save cart to localStorage
-function saveCart() {
-  localStorage.setItem("techstore-cart", JSON.stringify(cart))
-}
-
-// Call initialize cart on page load
-initializeCart()
-
-// Save cart whenever it changes
-const originalAddToCart = addToCart
-addToCart = (productId) => {
-  originalAddToCart(productId)
-  saveCart()
-}
 
 // Parallax effect for hero banner
 window.addEventListener("scroll", () => {

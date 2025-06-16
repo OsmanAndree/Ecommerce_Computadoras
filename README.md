@@ -11,6 +11,7 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 - Productos en oferta
 - Newsletter
 - Navegación completa
+- **Carrito sincronizado** con todas las páginas
 
 ### 2. Página de Login (`login.html`)
 - Formulario de inicio de sesión
@@ -32,7 +33,7 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 - Funcionalidad de carrito
 - Diseño responsivo
 
-### 4. Página del Carrito (`carrito.html`) - **NUEVA**
+### 4. Página del Carrito (`carrito.html`)
 - Gestión completa del carrito de compras
 - Lista de productos con controles de cantidad
 - Resumen de orden con cálculos automáticos
@@ -42,14 +43,34 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 - Persistencia de datos en localStorage
 - Diseño responsivo y moderno
 
+## 🔧 Sistema de Carrito Unificado
+
+### Problema Resuelto
+**Antes**: El carrito funcionaba diferente en el index vs el catálogo
+- Index: Sin persistencia, se reseteaba al recargar
+- Catálogo: Con localStorage y persistencia completa
+
+**Solución**: Sistema unificado con `cart-utils.js`
+- **Funcionalidad compartida** entre todas las páginas
+- **Persistencia consistente** en localStorage
+- **Sincronización automática** del contador
+- **Comportamiento uniforme** en toda la aplicación
+
+### Archivos del Sistema de Carrito
+- **`cart-utils.js`**: Funcionalidad compartida del carrito
+- **`script.js`**: Funcionalidad específica del index (usando utilidades)
+- **`catalogo.js`**: Funcionalidad específica del catálogo (usando utilidades)
+- **`carrito.js`**: Funcionalidad específica del carrito (usando utilidades)
+
 ## Características del Carrito
 
 ### Gestión de Productos
-- **Agregar/Remover productos** desde el catálogo
+- **Agregar/Remover productos** desde cualquier página
 - **Control de cantidades** con botones +/- 
 - **Cálculo automático** de subtotales y totales
 - **Persistencia local** de los datos del carrito
 - **Sincronización** entre todas las páginas
+- **Contador actualizado** en tiempo real
 
 ### Sistema de Cupones
 - **WELCOME10**: 10% de descuento (mínimo $50)
@@ -68,6 +89,7 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 - **Mensajes de feedback** para todas las acciones
 - **Confirmación** antes de vaciar el carrito
 - **Simulación de checkout** con limpieza automática
+- **Auto-guardado** cada 30 segundos
 
 ## Características del Catálogo
 
@@ -103,6 +125,7 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 - `styles.css` - Estilos principales del proyecto
 
 ### JavaScript
+- `cart-utils.js` - **Funcionalidad compartida del carrito**
 - `script.js` - Funcionalidad de la página principal
 - `login.js` - Funcionalidad de login
 - `catalogo.js` - Funcionalidad del catálogo
@@ -136,14 +159,16 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 - Sistema de cupones
 - Opciones de envío
 - Proceso de checkout
+- **Sistema unificado** entre todas las páginas
 
 ## Instalación y Uso
 1. Clona o descarga el proyecto
 2. Abre `index.html` en tu navegador
 3. Navega entre las páginas usando el menú
 4. Explora el catálogo con todos sus filtros
-5. Agrega productos al carrito
+5. Agrega productos al carrito desde cualquier página
 6. Prueba la funcionalidad completa del carrito
+7. **Verifica la sincronización** entre páginas
 
 ## Navegación
 - **Inicio**: Página principal con productos destacados
@@ -153,11 +178,22 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 
 ## Flujo de Compra
 1. **Explorar**: Navegar por el catálogo con filtros
-2. **Agregar**: Añadir productos al carrito
+2. **Agregar**: Añadir productos al carrito desde cualquier página
 3. **Revisar**: Ver productos en el carrito
 4. **Aplicar**: Usar cupones de descuento
 5. **Enviar**: Seleccionar opción de envío
 6. **Pagar**: Proceder al checkout
+
+## ✅ Problemas Resueltos
+
+### Consistencia del Carrito
+- **Antes**: Comportamiento diferente entre páginas
+- **Después**: Sistema unificado con `cart-utils.js`
+- **Beneficios**: 
+  - Persistencia consistente
+  - Sincronización automática
+  - Funcionalidad uniforme
+  - Mantenimiento simplificado
 
 ## Notas de Desarrollo
 - El proyecto está optimizado para navegadores modernos
@@ -165,4 +201,5 @@ TechStore es una tienda en línea especializada en computadoras, laptops, compon
 - JavaScript modular y bien estructurado
 - Código comentado para fácil mantenimiento
 - Persistencia de datos en localStorage
-- Sincronización entre páginas 
+- Sincronización entre páginas
+- **Sistema de carrito unificado** para consistencia 
