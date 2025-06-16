@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Catálogo de Productos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none;">
+                        <h1><i class="fas fa-laptop"></i> TechStore</h1>
+                    </a>
+                </div>
+                
+                <div class="search-bar">
+                    <select class="category-select" id="categoryFilter">
+                        <option value="">Todas las categorías</option>
+                        <option value="gaming">Laptops Gaming</option>
+                        <option value="office">Laptops Oficina</option>
+                        <option value="desktop">PCs de Escritorio</option>
+                        <option value="components">Componentes</option>
+                        <option value="accessories">Accesorios</option>
+                    </select>
+                    <input type="text" id="searchInput" placeholder="Buscar productos...">
+                    <button class="search-btn" onclick="performSearch()"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="account">
+                        <i class="fas fa-user"></i>
+                        <span>Mi cuenta</span>
+                    </div>
+                    <div class="cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                        <span>Carrito</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="catalogo.html" class="active"><i class="fas fa-th-large"></i> Catálogo</a></li>
+                    <li><a href="#"><i class="fas fa-gamepad"></i> Gaming</a></li>
+                    <li><a href="#"><i class="fas fa-briefcase"></i> Oficina</a></li>
+                    <li><a href="#"><i class="fas fa-desktop"></i> Escritorio</a></li>
+                    <li><a href="#"><i class="fas fa-microchip"></i> Componentes</a></li>
+                    <li><a href="#"><i class="fas fa-headphones"></i> Accesorios</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>Catálogo de Productos</h1>
+                <p>Descubre nuestra amplia selección de computadoras y tecnología</p>
+                <div class="breadcrumb">
+                    <a href="index.html">Inicio</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Catálogo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters and Products Section -->
+    <section class="catalog-section">
+        <div class="container">
+            <div class="catalog-layout">
+                <!-- Sidebar Filters -->
+                <aside class="filters-sidebar">
+                    <div class="filter-card">
+                        <h3><i class="fas fa-filter"></i> Filtros</h3>
+                        
+                        <!-- Price Range Filter -->
+                        <div class="filter-group">
+                            <h4>Rango de Precio</h4>
+                            <div class="price-range">
+                                <input type="range" id="priceRange" min="0" max="3000" value="3000" step="100">
+                                <div class="price-inputs">
+                                    <input type="number" id="minPrice" placeholder="Min" min="0">
+                                    <span>-</span>
+                                    <input type="number" id="maxPrice" placeholder="Max" max="3000">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Category Filter -->
+                        <div class="filter-group">
+                            <h4>Categoría</h4>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="checkbox" value="gaming">
+                                    <span>Laptops Gaming</span>
+                                    <span class="count">(12)</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="office">
+                                    <span>Laptops Oficina</span>
+                                    <span class="count">(8)</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="desktop">
+                                    <span>PCs de Escritorio</span>
+                                    <span class="count">(15)</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="components">
+                                    <span>Componentes</span>
+                                    <span class="count">(25)</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="accessories">
+                                    <span>Accesorios</span>
+                                    <span class="count">(18)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Brand Filter -->
+                        <div class="filter-group">
+                            <h4>Marca</h4>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="checkbox" value="asus">
+                                    <span>ASUS</span>
+                                    <span class="count">(8)</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="dell">
+                                    <span>Dell</span>
+                                    <span class="count">(6)</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="hp">
+                                    <span>HP</span>
+                                    <span class="count">(7)</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="lenovo">
+                                    <span>Lenovo</span>
+                                    <span class="count">(5)</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="apple">
+                                    <span>Apple</span>
+                                    <span class="count">(4)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Rating Filter -->
+                        <div class="filter-group">
+                            <h4>Calificación</h4>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="checkbox" value="5">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="count">(15)</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="4">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="count">(23)</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="3">
+                                    <span class="stars">★★★☆☆</span>
+                                    <span class="count">(8)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Clear Filters Button -->
+                        <button class="clear-filters-btn" onclick="clearFilters()">
+                            <i class="fas fa-times"></i> Limpiar Filtros
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- Products Area -->
+                <main class="products-area">
+                    <!-- Products Header -->
+                    <div class="products-header">
+                        <div class="products-info">
+                            <h2>Productos</h2>
+                            <span class="products-count">Mostrando <span id="productsCount">0</span> productos</span>
+                        </div>
+                        <div class="products-controls">
+                            <div class="sort-control">
+                                <label for="sortSelect">Ordenar por:</label>
+                                <select id="sortSelect" onchange="sortProducts()">
+                                    <option value="relevance">Relevancia</option>
+                                    <option value="price-low">Precio: Menor a Mayor</option>
+                                    <option value="price-high">Precio: Mayor a Menor</option>
+                                    <option value="rating">Mejor Calificación</option>
+                                    <option value="newest">Más Recientes</option>
+                                </select>
+                            </div>
+                            <div class="view-controls">
+                                <button class="view-btn active" data-view="grid" onclick="changeView('grid')">
+                                    <i class="fas fa-th-large"></i>
+                                </button>
+                                <button class="view-btn" data-view="list" onclick="changeView('list')">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Products will be loaded here by JavaScript -->
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="pagination-btn" onclick="changePage('prev')">
+                            <i class="fas fa-chevron-left"></i> Anterior
+                        </button>
+                        <div class="page-numbers">
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <span>...</span>
+                            <button class="page-btn">8</button>
+                        </div>
+                        <button class="pagination-btn" onclick="changePage('next')">
+                            Siguiente <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Suscríbete a nuestro newsletter</h2>
+            <p>Recibe las mejores ofertas y novedades en tecnología</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Tu email">
+                <button>Suscribirse</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Acerca de TechStore</h3>
+                    <ul>
+                        <li><a href="#">Quiénes somos</a></li>
+                        <li><a href="#">Trabaja con nosotros</a></li>
+                        <li><a href="#">Prensa</a></li>
+                        <li><a href="#">Inversionistas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Servicio al cliente</h3>
+                    <ul>
+                        <li><a href="#">Centro de ayuda</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                        <li><a href="#">Garantías</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Métodos de pago</h3>
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-cc-amex"></i>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TechStore. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="catalogo.js"></script>
+</body>
+</html> 
